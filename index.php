@@ -6,6 +6,27 @@ $result = mysqli_query($conn, $query);
 if (!$result) {
     die("Query Error: " . mysqli_error($conn));
 }
+
+
+// Ambil halaman saat ini dari URL (default: 1)
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$limit = 4; // Jumlah buku per halaman
+$offset = ($page - 1) * $limit; // Hitung offset
+
+// Query untuk mendapatkan data buku dengan pagination
+$query = "SELECT * FROM halaman LIMIT $limit OFFSET $offset";
+$result = mysqli_query($conn, $query);
+
+// Query untuk menghitung total buku
+$total_query = "SELECT COUNT(*) AS total FROM halaman";
+$total_result = mysqli_query($conn, $total_query);
+$total_row = mysqli_fetch_assoc($total_result);
+$total_books = $total_row['total'];
+
+// Hitung jumlah halaman
+$total_pages = ceil($total_books / $limit);
+
+
 ?>
 <!DOCTYPE html>
 <html lang="id" data-bs-theme="light">
@@ -61,27 +82,46 @@ if (!$result) {
         <!-- Konten -->
         <div class="container py-4 mt-5">
             <div class="row" id="bookGrid">
-                <?php
-                while ($row = mysqli_fetch_array($result)) {
-                    ?>
+                <?php while ($row = mysqli_fetch_array($result)) { ?>
                     <div class="col-6 col-md-3 mb-4 book-item">
                         <div class="card h-100 shadow-sm">
-                            <!-- Gambar Sampul -->
-                            <img src="uploads/<?= htmlspecialchars($row['gambar']) ?>"
-                                alt="<?= htmlspecialchars($row['judul']) ?>" class="card-img-top">
-
-                            <!-- Konten Card -->
+                            <img src="uploads/<?= htmlspecialchars($row['gambar']) ?>" alt="<?= htmlspecialchars($row['judul']) ?>" class="card-img-top">
                             <div class="card-body d-flex flex-column">
                                 <h5 class="card-title"><?= htmlspecialchars($row['judul']) ?></h5>
                                 <p class="card-text fst-italic text-muted"><?= htmlspecialchars($row['kutipan']) ?></p>
-                                <a href="baca.php?id=<?= htmlspecialchars($row['id']) ?>"
-                                    class="btn btn-primary mt-auto">Baca</a>
+                                <a href="baca.php?id=<?= htmlspecialchars($row['id']) ?>" class="btn btn-primary mt-auto">Baca</a>
                             </div>
                         </div>
                     </div>
                 <?php } ?>
             </div>
         </div>
+
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+                <?php if ($page > 1): ?>
+                    <li class="page-item">
+                        <a class="page-link" href="?page=<?= $page - 1 ?>" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                <?php endif; ?>
+
+                <?php for ($i = 1; $i <= $total_pages; $i++): ?>
+                    <li class="page-item <?= $i == $page ? 'active' : '' ?>">
+                        <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
+                    </li>
+                <?php endfor; ?>
+
+                <?php if ($page < $total_pages): ?>
+                    <li class="page-item">
+                        <a class="page-link" href="?page=<?= $page + 1 ?>" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                <?php endif; ?>
+            </ul>
+        </nav>
 
         <footer class="bg-light text-dark border-top mt-5">
     <div class="container py-5">
@@ -108,7 +148,7 @@ if (!$result) {
                 <h5 class="fw-bold">Hubungi Kami</h5>
                 <p class="small mb-1">📧 <a href="mailto:rifkismurf92@gmail.com" class="text-decoration-none text-dark">rifkismurf92@gmail.com</a></p>
                 <p class="small mb-1">📷 <a href="https://instagram.com/riffgsta" target="_blank" class="text-decoration-none text-dark">@riffgsta</a></p>
-                <p class="small mb-1">💬 <a href="https://wa.me/6281234567890" target="_blank" class="text-decoration-none text-success">Chat Admin via WhatsApp</a></p>
+                <p class="small mb-1">💬 <a href="https://wa.me/6281234567890" target="_blank" class="text-decoration-none text-success">Chat Admin</a></p>
             </div>
         </div>
 
