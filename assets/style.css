@@ -1,0 +1,99 @@
+html[data-bs-theme="dark"] body {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+html[data-bs-theme="dark"] .card {
+    background-color: #1f1f1f;
+    color: #e0e0e0;
+    border: 1px solid #333;
+}
+
+html[data-bs-theme="dark"] .card .btn-primary {
+    background-color: #3a3a3a;
+    border-color: #444;
+    color: #fff;
+}
+
+html[data-bs-theme="dark"] .card .btn-primary:hover {
+    background-color: #555;
+    border-color: #666;
+}
+
+html[data-bs-theme="dark"] .card-text,
+html[data-bs-theme="dark"] .card-title {
+    color: #ccc;
+}
+
+html[data-bs-theme="dark"] .btn-outline-secondary {
+    color: #fff;
+    border-color: #666;
+}
+
+html[data-bs-theme="dark"] .btn-outline-secondary:hover {
+    background-color: #666;
+    color: #fff;
+}
+
+/* Navbar */
+html[data-bs-theme="dark"] .navbar,
+html[data-bs-theme="dark"] .navbar-light {
+    background-color: #1c1c1c !important;
+    color: #fff;
+}
+/* Style umum untuk footer */
+footer {
+    background-color: #f8f9fa; /* Warna terang untuk mode terang */
+    color: #212529; /* Warna teks gelap */
+    width: 100%;
+    padding: 2rem 0; /* Menambah ruang padding agar lebih rapi */
+}
+
+/* Hover efek untuk link */
+footer a:hover {
+    color: #0056b3;
+}
+
+/* Style Footer untuk mode gelap */
+html[data-bs-theme="dark"] footer {
+    background-color: #121212 !important; /* Latar belakang gelap */
+    color: #e0e0e0 !important; /* Teks terang */
+}
+
+/* Link dalam footer di mode gelap */
+html[data-bs-theme="dark"] footer a {
+    color: #e0e0e0 !important; /* Link terang */
+}
+
+/* Hover efek untuk link dalam mode gelap */
+html[data-bs-theme="dark"] footer a:hover {
+    color: #adb5bd !important; /* Warna saat hover */
+}
+
+/* Memastikan footer memenuhi layar */
+footer .container,
+footer .container-fluid {
+    max-width: 100% !important; /* Memastikan kontainer lebar penuh */
+}
+
+/* Menambahkan responsif pada footer */
+footer .container .row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; /* Agar kolom-kolomnya responsif */
+}
+
+footer .col-md-4 {
+    flex: 1;
+    margin-bottom: 1rem;
+}
+
+footer .col-md-3 {
+    flex: 1;
+    margin-bottom: 1rem;
+}
+
+/* Mengubah warna teks untuk header footer sesuai mode */
+html[data-bs-theme="dark"] footer h5 {
+    color: #f8f9fa !important; /* Warna terang untuk header */
+}
