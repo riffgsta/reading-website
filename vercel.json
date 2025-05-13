@@ -7,4 +7,14 @@
     { "src": "/admin/.*", "status": 403 },
     { "src": "/(.*)", "dest": "/index.php" }
   ]
+  
+}
+{
+"rewrites" : [
+    {
+        "source": "/(.*)",
+        "destination": "/"
+        
+    }
+  ]
 }

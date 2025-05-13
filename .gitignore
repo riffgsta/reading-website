@@ -1,3 +1,5 @@
 /admin/
 *.env
 *.log
+
+/inc/inc_koneksi.php
