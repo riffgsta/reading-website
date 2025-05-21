@@ -1,4 +1,9 @@
 <?php
+
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+
 // koneksi database
 include 'inc/inc_koneksi.php';
 $query = "SELECT * FROM halaman"; // Pastikan tabel `halaman` punya: id, judul, kutipan, link
@@ -147,8 +152,8 @@ $total_pages = ceil($total_books / $limit);
             <div class="col-md-4 mb-4">
                 <h5 class="fw-bold">Hubungi Kami</h5>
                 <p class="small mb-1">📧 <a href="mailto:rifkismurf92@gmail.com" class="text-decoration-none text-dark">rifkismurf92@gmail.com</a></p>
-                <p class="small mb-1">📷 <a href="https://instagram.com/riffgsta" target="_blank" class="text-decoration-none text-dark">@riffgsta</a></p>
-                <p class="small mb-1">💬 <a href="https://wa.me/6281234567890" target="_blank" class="text-decoration-none text-success">Chat Admin</a></p>
+                <p class="small mb-1">💬<a href="https://instagram.com/riffgsta" target="_blank" class="text-decoration-none text-dark">@riffgsta / </a></p>
+                <a href="https://wa.me/6289623629196" target="_blank" class="text-decoration-none text-success">Chat Admin</a>
             </div>
         </div>
 

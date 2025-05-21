@@ -1,5 +1,5 @@
-/admin/
+/kelola/
 *.env
 *.log
 
-/inc/inc_koneksi.php
+/inc/inc_koneksi.phpkelola/ 
